@@ -19,20 +19,20 @@
  * Software Foundation website at http://www.gnu.org/licenses/.
  *
  * PHP version 5
- * @copyright  de la Haye Kommunikationsdesign 2009 
- * @author     Christian de la Haye 
- * @package    CH Shop 
+ * @copyright  sr-tag.de 2011
+ * @author     Sven Rhinow 
+ * @package    fakeSubSites
  * @license    LGPL 
  * @filesource
  */
 
 
 /**
- * Class fr24shop 
+ * Class fakeSubSites 
  *
- * @copyright  de la Haye Kommunikationsdesign 2009 
- * @author     Christian de la Haye 
- * @package    CH Shop
+ * @copyright  sr-tag.de 2011
+ * @author     Sven Rhinow 
+ * @package    fakeSubSites
  */
 
 class fakeSubSites extends Frontend
@@ -64,13 +64,14 @@ class fakeSubSites extends Frontend
 	   
 	   foreach($_GET AS $k => $v) $this->getVar = $k;
        }
+       
        //tag-elemente extrahieren
        $tagPieces = explode('::',$strTag);
        
        //wenn es leer ist oder nicht zu diesem Modul gehört, hier abbrechen
         if(count($tagPieces)<1 || $tagPieces[0]!='insert_fss' || !$this->isGet) return  $strTag;
        
-        $dbObj = $this->Database->prepare('SELECT replacement FROM `tl_fakesubsites` WHERE `page` = ? AND `tag` = ? AND active=?')
+        $dbObj = $this->Database->prepare('SELECT `id` FROM `tl_fakesubsites`  WHERE `page` = ? AND `tag` = ? AND active=?')
 			       ->execute($objPage->id, $tagPieces[1], 1);
 	
 	//wenn es keine passenden Datenbankeinträge gibt, hier abbrechen
@@ -79,11 +80,12 @@ class fakeSubSites extends Frontend
        	while($dbObj->next())
        	{
 	    //array aller eingestellten Ersetzenwerte
-	    $replacements = deserialize($dbObj->replacement);
+	    $itemObj = $this->Database->prepare('SELECT `name`,`alias` FROM `tl_fss_items` WHERE `pid`=%s')
+				      ->execute($dbObj->id);
 	    
-	    foreach($replacements as $replace)
+	    while($itemObj->next())
 	    {
-	        if($this->getVar == $replace['name']) return $replace['value'];
+	        if($this->getVar == $itemObj->alias) return $itemObj->name;
 	    }
 	    
        	}
@@ -104,12 +106,13 @@ class fakeSubSites extends Frontend
 	                                                
 	if($dbObj->numRows > 0) while($dbObj->next())
 	{
-	     //array aller eingestellten Ersetzenwerte
-	    $replacements = deserialize($dbObj->replacement);
+	    //array aller eingestellten Ersetzenwerte
+	    $itemObj = $this->Database->prepare('SELECT `name`,`alias` FROM `tl_fss_items` WHERE `pid`=%s')
+				      ->execute($dbObj->id);
 	    
-	    foreach($replacements as $replace)
+	    while($itemObj->next())
 	    {
-	        $fssArr[] =  $this->Environment->base.$this->createUrl('id',$dbObj->page,'k='.$replace['name'],'',true,true);
+	        $fssArr[] =  $this->Environment->base.$this->createUrl('id',$dbObj->page,'k='.$itemObj->alias, '', true, true);
 	    }
 	    
 	}                                                

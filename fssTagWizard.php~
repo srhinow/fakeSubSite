@@ -35,9 +35,9 @@
  * @package    Controller
  *
  * PHP version 5
- * @copyright  sr-tag.de 2010
+ * @copyright  sr-tag.de 2011
  * @author     Sven Rhinow 
- * @package    FotoRollo24 
+ * @package    fakeSubSites 
  * @license    LGPL 
  * @filesource 
  */
@@ -130,7 +130,7 @@ class fssTagWizard extends Widget
 	 */
 	public function generate()
 	{
-		$arrButtons = array('copy', 'up', 'down', 'delete');
+		$arrButtons = array('delete');
 		$strCommand = 'cmd_' . $this->strField;
 
 		// Change the order
@@ -140,17 +140,6 @@ class fssTagWizard extends Widget
 
 			switch ($this->Input->get($strCommand))
 			{
-				case 'copy':
-					array_insert($this->varValue, $this->Input->get('cid'), array($this->varValue[$this->Input->get('cid')]));
-					break;
-
-				case 'up':
-					$this->varValue = array_move_up($this->varValue, $this->Input->get('cid'));
-					break;
-
-				case 'down':
-					$this->varValue = array_move_down($this->varValue, $this->Input->get('cid'));
-					break;
 
 				case 'delete':
 					$this->varValue = array_delete($this->varValue, $this->Input->get('cid'));

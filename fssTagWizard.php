@@ -130,7 +130,7 @@ class fssTagWizard extends Widget
 	 */
 	public function generate()
 	{
-		$arrButtons = array('copy', 'up', 'down', 'delete');
+		$arrButtons = array('copy','delete');
 		$strCommand = 'cmd_' . $this->strField;
 
 		// Change the order
@@ -142,14 +142,6 @@ class fssTagWizard extends Widget
 			{
 				case 'copy':
 					array_insert($this->varValue, $this->Input->get('cid'), array($this->varValue[$this->Input->get('cid')]));
-					break;
-
-				case 'up':
-					$this->varValue = array_move_up($this->varValue, $this->Input->get('cid'));
-					break;
-
-				case 'down':
-					$this->varValue = array_move_down($this->varValue, $this->Input->get('cid'));
 					break;
 
 				case 'delete':

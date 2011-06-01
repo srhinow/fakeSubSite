@@ -35,8 +35,9 @@ $GLOBALS['BE_FFL']['fssTagWizard'] = 'fssTagWizard';
  */
 $GLOBALS['BE_MOD']['content']['fakesubsites'] = array
 (
-	'tables'	=> array('tl_fakesubsites'),
+	'tables'	=> array('tl_fakesubsites','tl_fss_items'),
 	'icon'		=> 'system/modules/fakeSubSites/html/icon.png',
+	'importFssItems'=> array('fss', 'importFssItems'),
 );
 
 /**
