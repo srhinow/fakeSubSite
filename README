@@ -1,0 +1,31 @@
+Author: Sven Rhinow
+Web: www.sr-tag.de
+License: LPGL (mit Ausnahmen)
+Version: 1.1
+Contao-Version getestet: 2.9.5
+Ausnahmen: Ich verbiete die Benutzung dieser Software für die Firma rokamedia und deren Personen
+
+deutsch
+--------------------------------------
+Dieses Modul ist ein Suchmaschienen-Optimierungs-Contao-Modul.
+--------------------------------------
+Es stellt die Möglichkeit bereit, per Platzhalter im Text für diverse im Backend definierte Übergabe-Parameter den Platzhalter zu ersetzen.
+
+#############
+Installation
+#############
+
+1. den kompletten Ordner "fakeSubSite" in das Contao-Installations-Verzeichnis und dort in den Unterordner system/modules/ kopieren
+2. Contao-Installer aufrufen ([mein-domainname]/contao/install.php) und die Datenbank aktualisieren
+
+#############
+Einrichtung
+#############
+1. unter [mein-domainname]/contao/ ins Backend einloggen
+2. Unter Layout -> Seitenstruktur wenn noch nicht vorhanden, eine Seite anlegen auf der die Platzhalter im Text eingebaut werden.
+3. auf der linken Seite unter Inhalte -> Fake-Unterseiten "Neuer Eintrag" die benötigten Felder ausfüllen (Name,Seite,Tag-Name,aktiv)
+4. per Stiftsymbo in das gerade angelegte Element wechseln
+5. dort kann die Element-Gruppe mit diversen Einträgen entweder einzeln über "Neuer Eintrag" oder über "Parameter-Import" per CSV importiert werden
+6. beim CSV-Import wird nur eine Spalte mit den Namen (die dann mit dem Platzhalter im Text ersetzt werden soll) benötigt.
+7. der Alias und zeitgleich auch der GET-Paramter wird wenn nicht vorhanden per Contao-Funktion bereinigt und generiert
+8. nun kann der entsprechende Platzhalter(Insert-Tag) in der Übersicht vom Backend-Modul z.B. {{insert_fss::vereine}} in dem Text der ausgewählten Seite platziert werden.
