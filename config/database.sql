@@ -39,3 +39,10 @@ CREATE TABLE `tl_fss_items` (
   `active` char(1) NOT NULL default '',  
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Table `tl_module`
+--
+CREATE TABLE `tl_module` (
+   `fss_name` int(10) unsigned NOT NULL default '0',
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

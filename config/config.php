@@ -28,6 +28,11 @@
  * @filesource
  */
 
+$GLOBALS['FE_MOD']['fakesubsites'] = array('fss_url' => 'ModuleFssUrls');
+
+/**
+ * wizzards
+ */
 $GLOBALS['BE_FFL']['fssTagWizard'] = 'fssTagWizard';
 
 /**

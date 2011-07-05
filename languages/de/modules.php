@@ -28,7 +28,13 @@
  * @filesource
  */
 
+/**
+ * Frond end modules
+ */
+ $GLOBALS['TL_LANG']['FMD']['fakesubsites'] = array('Fake-Unterseiten','');
+$GLOBALS['TL_LANG']['FMD']['fss_url'] =  array('Fake-Url-CVS-Liste','');
 
+$GLOBALS['TL_LANG']['MOD']['fss_name'] = array('Fake-Name','');
 /**
  * Back end modules
  */
